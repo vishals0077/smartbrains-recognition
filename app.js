@@ -3,7 +3,7 @@ const bodyParser = require ('body-parser');
 const cors = require ('cors');
 const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
-
+const path = require('path');
 const app =  express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -22,10 +22,7 @@ else
 {
 	console.log('connected')
 }
-app.get('/',(req,res)=>
-{
-	res.json(hello)
-})
+
 // app.post('/signin',(req,res)=>{
 
 // 	if(req.body.email === database.users[0].email && req.body.password === database.users[0].password)
@@ -66,5 +63,10 @@ app.get('/',(req,res)=>
 // 		res.status(400)
 // 	}
 // 	})
-
+if(process.env.NODE_ENV === 'production') {
+	app.use(express.static('smartbrains/build'));
+	app.get('*', (req,res) => {
+		res.sendFile(path.join(__dirname, 'smartbrains','build','index.html'));
+	})
+}
 app.listen(process.env.PORT || 8080);
