@@ -32,10 +32,14 @@ class SignIn extends React.Component
     }).then(response=> response.json()).then(data=>
     {
       
-      if( data.status==='success' && data.data.length!==0 )
+      if( data.status==='success' && data.data.length===3 )
       {
         this.props.signinclick();
         
+      }
+      else if(data.status==='success' && data.data.length<3)
+      {
+        alert("fill all the fields to sign up");
       }
       else if(data.status==='fail')
       {

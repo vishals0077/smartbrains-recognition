@@ -26,9 +26,16 @@ class Register extends React.Component
    }).then(response=> response.json()).then(user=> {
       if(user)
       {
-
-        this.props.loaduser(user);
-        this.props.signupclick2();
+        if(user.data.length===3)
+        {
+          this.props.loaduser(user);
+          this.props.signupclick2();
+        }
+        else
+        {
+          alert("fill in all field to sign up")
+        }
+        
       }
         
       
@@ -48,6 +55,15 @@ class Register extends React.Component
   {
     this.setState({signuppassword:event.target.value})
   }
+  validateemail=(event)=>
+  {
+    if(!(document.getElementById('email-address').value.includes('.')) || !(document.getElementById('email-address').value.includes('@')))
+    {
+      alert('enter valid email');
+      document.getElementById('email-address').value="";
+    }
+    
+  }
   render()
   {
     return(
@@ -58,7 +74,7 @@ class Register extends React.Component
       <legend className="f1 fw6 ph0 mh0">Sign Up</legend>
        <div className="mt3">
         <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" onChange={this.changeemail} type="email" name="email-address"  id="email-address" required />
+        <input  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" onChange={this.changeemail} type="email" name="email-address"  id="email-address" onBlur = {this.validateemail} required />
       </div>
       <div className="mv3">
         <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
