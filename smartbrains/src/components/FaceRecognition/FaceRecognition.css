@@ -1,0 +1,23 @@
+.bounding-box
+{
+	position: absolute;
+	box-shadow: 0 0 0 3px #149df2 inset;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	cursor: pointer;
+	top:0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+#parentdiv span
+{
+	color: white;
+	background-color: blue;
+	height: 20px;
+	position: absolute;
+	left:0px;
+	
+
+}
