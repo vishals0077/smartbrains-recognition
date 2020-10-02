@@ -15,31 +15,47 @@ class Register extends React.Component
 
   onButtonClick=()=>
   {
-   fetch("https://immense-hamlet-47321.herokuapp.com/api/register", {
-     method: 'post',
-     headers: {'Content-Type': 'application/json'},
-     body : JSON.stringify({
-       email: this.state.signupemail,
-       name: this.state.signupname,
-       password: this.state.signuppassword
-     })
-   }).then(response=> response.json()).then(user=> {
-      if(user)
-      {
-        if(user.data.length===3)
-        {
-          this.props.loaduser(user);
-          this.props.signupclick2();
-        }
-        else
-        {
-          alert("fill in all field to sign up")
-        }
-        
-      }
-        
-      
-    })
+    if(!(document.getElementById('email-address').value.includes('.')) || !(document.getElementById('email-address').value.includes('@')))
+    {
+      alert('enter valid email');
+      document.getElementById('email-address').value="";
+    }   
+    else if(document.getElementById('name').value==='')
+    {
+      alert("enter a name");
+    }
+    else if(document.getElementById('password').value==='')
+    {
+      alert("enter a password");
+    }
+    
+    else
+    {
+         fetch("https://immense-hamlet-47321.herokuapp.com/api/register", {
+         method: 'post',
+         headers: {'Content-Type': 'application/json'},
+         body : JSON.stringify({
+           email: this.state.signupemail,
+           name: this.state.signupname,
+           password: this.state.signuppassword
+         })
+       }).then(response=> response.json()).then(user=> {
+          if(user)
+          {
+           
+
+              this.props.loaduser(user);
+              this.props.signupclick2();
+            
+              
+            
+            
+          }
+            
+          
+        })
+    }
+
 
     
   }
@@ -57,11 +73,7 @@ class Register extends React.Component
   }
   validateemail=(event)=>
   {
-    if(!(document.getElementById('email-address').value.includes('.')) || !(document.getElementById('email-address').value.includes('@')))
-    {
-      alert('enter valid email');
-      document.getElementById('email-address').value="";
-    }
+    
     
   }
   render()
