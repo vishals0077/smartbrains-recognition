@@ -11,7 +11,7 @@ import Register from '../components/Register/Register';
 import '../components/FaceRecognition/FaceRecognition.css';
 
 const app= new Clarifai.App({
-  apiKey: '413ad8d08fda4937ac2ea8167c8111eb'
+  apiKey: '47ae45ff0c354d6db546f62bdb4d7038'
 })
 class App extends React.Component {
   constructor()
