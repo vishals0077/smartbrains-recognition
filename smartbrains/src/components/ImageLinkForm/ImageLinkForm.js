@@ -8,7 +8,7 @@ const ImageLinkForm= ({onchangetext, onclicking,onclickingreset}) =>
 	This magic will detect faces from your photos
 	</p>
 	<div className="patternBack shadow-5 w-70 center " style={{height:200 ,marginBottom:100}}>
-	<input id="photolink" type="text" className="f4 pa2 w-50 " style={{marginTop:100}} onChange={onchangetext}/> 
+	<input id="photolink" type="text" className="f4 pa2 w-50 " style={{marginTop:100}} onChange={onchangetext} placeholder="enter image URL here"/> 
 	<button className=" grow f4 link ph3 pv2 df white bg-light-purple" style={{borderRadius: 10}} onClick={onclicking}>Detect </button>
 	</div>
 	<button id="resetbutton" onClick= {onclickingreset}>RESET</button>
